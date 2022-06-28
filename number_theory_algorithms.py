@@ -61,13 +61,12 @@ class NumThAlgo:
 
         ___Trivia
 
-            This method provide us the prime factorization of a given
+            This method provides us the prime factorization of a given
         integer n. It returns a list. The first entry in the list
         will be either 1 or -1 which indicates the sign of n. And
         the rest of the entries are the prime factors of n. For
-        instance, if the prime factors of an integer a > 0 are
-        p1, p2, ..., pk, then the method will return a list of the
-        form
+        instance, if the prime factors of |n| are p1, p2, ..., pk,
+        then the method will return a list of the form
 
                 [1, p1, p2, ..., pk] .
         """
@@ -135,7 +134,7 @@ class NumThAlgo:
 
         ___Trivia
 
-            This method help us count the number of primes number in
+            This method helps us count the number of primes number in
         between m and n inclusive. If m is 'None', then the method
         counts the number of primes less than or equal to n.
         """
