@@ -4,7 +4,8 @@
 # expressions such as sieve of eratosthenes, fibonacci sequence
 # generator, etc.
 
-import math, statistics, time
+import math, statistics
+from fractions import Fraction
 
 # THE MAIN ALGORITHM_________________________________________________
 class NumThAlgo:
@@ -147,7 +148,7 @@ class NumThAlgo:
                 raise ValueError
         else:
             raise ValueError
-            
+
     # Fibonacci Sequence Generator___________________________________
     def fibonacci(self, n):
         """
@@ -202,6 +203,7 @@ class NumThAlgo:
             print("Give only an integer!")
             raise ValueError
 
+
     def fibo_filter(self, upp, low= 0):
         """
         Method's Title      : fibo_filter
@@ -211,10 +213,79 @@ class NumThAlgo:
         ___Trivia
 
             This method filters the fibonacci sequence in betweeen
-        two possitive integers m and n greater than 1. The method
+        two positive integers m and n greater than 1. The method
         returns a list consisting of the fibonacci sequence greater
         than or equal to m and less than n.
         """
         fibo_m = self.__fibo_f(low)
         fibo_n = self.__fibo_f(upp)
         return [f for f in fibo_n if not (f in fibo_m)]
+        
+    # Arithmetic Sequence and Series_________________________________
+    def arithmetic_prog(self, n, a= 1, d= 1, series= False):
+        """
+        Method's Title      : arithmetic_prog
+        Formal Title        : Arithmetic Progression
+        Author              : Rizal Purnawan
+
+        ___Trivia
+
+            This method provides the generation of arithmetic
+        sequence and its sum. If one set 'True' for argument
+        'series', then the method returns the sum of the arithmetic
+        sequence. Otherwise the method returns a list consisting
+        the arithmetic sequence.
+        """
+        if isinstance(n, int) and n > 0 and isinstance(d, int):
+            if series == False:
+                return [a + (k - 1) * d for k in range(1, n + 1)]
+            else:
+                a_n = a + (n - 1) * d
+                return (n / 2) * (a_n + a)
+        else:
+            print("Invalid input!")
+            raise ValueError
+
+    # Geometric Progression__________________________________________
+    def geometric_prog(self, n, a, r, series= False, infinite= False):
+        """
+        Method's Title      : geometric_prog
+        Formal Title        : Geometric Progression
+        Author              : Rizal Purnawan
+
+        ___Author
+
+            This method proviedes the generation of geometric
+        sequence, its partial sum, and its infinite series if the
+        sequence converges.
+        
+        Parameters:
+        n       : a positive integer indicating the n-term of the
+                  progression.
+        a       : a real number (floating point) --in general--
+                  representing the first term of the sequence.
+        r       : a real number (floating point) --in general--
+                  representing the common ratio of the sequence.
+        series  : if True, the method returns the sum of the
+                  sequence, otherwise the method returns a list
+                  of numbers witin the sequence.
+        infinite: Can be True if series is True, and in that case,
+                  the method will return the sum of the infinite
+                  series if the sequence converges. Otherwise the
+                  method returns an error message.
+        """
+        if isinstance(n, int) and n > 0 and all(isinstance(x, int)
+                or isinstance(x, float) for x in [a, r]) \
+                and r != 1:
+            if series == False and infinite == False:
+                return [a *r**(k - 1) for k in range(1, n + 1)]
+            elif series == True and infinite == False:
+                return a* ( (1 - r**n)/(1 - r) )
+            elif series == True and infinite == True:
+                if 0 < abs(r) < 1:
+                    return a/(1 - r)
+            else:
+                raise ValueError
+        else:
+            print("Invalid input!")
+            raise ValueError
