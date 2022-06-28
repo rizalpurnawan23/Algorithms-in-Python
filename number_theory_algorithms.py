@@ -147,3 +147,74 @@ class NumThAlgo:
                 raise ValueError
         else:
             raise ValueError
+            
+    # Fibonacci Sequence Generator___________________________________
+    def fibonacci(self, n):
+        """
+        Method's Title      : fibonacci
+        Formal Title        : Fibonacci Sequence Generator
+        Author              : Rizal Purnawan
+
+        ___Trivia
+
+            This method generates a list consisting of the first
+        n terms of fibonacci sequence, given a nonnegatie integer n
+        as an input. Note that we use the convention that the
+        the order of the fibonacci sequence started from 0.
+        """
+        if isinstance(n, int) and n >= 0:
+            if n == 0:
+                return [0]
+            elif n == 1:
+                return [0, 1]
+            else:
+                fib_list = [0, 1]
+                k = 2
+                while k <= n:
+                    fib_list.append(
+                        fib_list[k - 2] + fib_list[k - 1]
+                    )
+                    k = k + 1
+                return fib_list
+        else:
+            print("Invalid input!")
+            print("Give only a nonnegative integer!")
+            raise ValueError
+
+    def __fibo_f(self, n):
+        if isinstance(n, int):
+            if n >= 2:
+                fibo_li = [0, 1]
+                k = 2
+                while True:
+                    f = fibo_li[k - 2] + fibo_li[k - 1]
+                    if f >= n:
+                        break
+                    fibo_li.append(f)
+                    k = k + 1
+                return fibo_li
+            elif n == 1:
+                return [0]
+            else:
+                return []
+        else:
+            print("Invalid input!")
+            print("Give only an integer!")
+            raise ValueError
+
+    def fibo_filter(self, upp, low= 0):
+        """
+        Method's Title      : fibo_filter
+        Formal Title        : Fibonacci Sequence Filter
+        Author              : Rizal Purnawan
+
+        ___Trivia
+
+            This method filters the fibonacci sequence in betweeen
+        two possitive integers m and n greater than 1. The method
+        returns a list consisting of the fibonacci sequence greater
+        than or equal to m and less than n.
+        """
+        fibo_m = self.__fibo_f(low)
+        fibo_n = self.__fibo_f(upp)
+        return [f for f in fibo_n if not (f in fibo_m)]
