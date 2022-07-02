@@ -5,7 +5,6 @@
 # generator, etc.
 
 import math, statistics
-from fractions import Fraction
 
 # THE MAIN ALGORITHM_________________________________________________
 class NumThAlgo:
@@ -61,12 +60,13 @@ class NumThAlgo:
 
         ___Trivia
 
-            This method provides us the prime factorization of a given
+            This method provide us the prime factorization of a given
         integer n. It returns a list. The first entry in the list
         will be either 1 or -1 which indicates the sign of n. And
         the rest of the entries are the prime factors of n. For
-        instance, if the prime factors of |n| are p1, p2, ..., pk,
-        then the method will return a list of the form
+        instance, if the prime factors of an integer a > 0 are
+        p1, p2, ..., pk, then the method will return a list of the
+        form
 
                 [1, p1, p2, ..., pk] .
         """
@@ -134,7 +134,7 @@ class NumThAlgo:
 
         ___Trivia
 
-            This method helps us count the number of primes number in
+            This method help us count the number of primes number in
         between m and n inclusive. If m is 'None', then the method
         counts the number of primes less than or equal to n.
         """
@@ -285,6 +285,81 @@ class NumThAlgo:
                     return a/(1 - r)
             else:
                 raise ValueError
+        else:
+            print("Invalid input!")
+            raise ValueError
+
+    # Coprimitive____________________________________________________
+    def __gcd(self, a, b):
+        # Alternative gcd algorithm
+        if all(isinstance(n, int) and n >= 0 for n in [a, b]):
+            a_pf = self.factorize(a)[1:]
+            b_pf = self.factorize(b)[1:]
+            pf = [n for n in a_pf if n in b_pf]
+            num_pf = len(pf)
+            k = 0
+            div_ = 1
+            while k < num_pf:
+                div_ = div_ * pf[k]
+                k = k + 1
+            # div_ = math.prod(pf)
+            return div_
+
+
+    def is_coprime(self, a, b):
+        """
+        Method's Title      : is_coprime
+        Formal Titile       : Comprimitive Identifier
+        Author              : Rizal Purnawan
+
+        ___Trivia
+
+            This method helps us indentify whether a given pair of
+        integers is coprime. The arguments are 'a' and 'b'. If 'a'
+        and 'b' are pariwise coprime, the method will return
+        a boolean value 'True', otherwise it will return 'False'.
+        """
+        if all(isinstance(n, int) and n >= 0 for n in [a, b]):
+            return True if math.gcd(a, b) == 1 else False
+        else:
+            print("Invalid input!")
+            print("'a' and 'b' have to be nonnegative integers!")
+            raise ValueError
+
+    def coprimes(self, b, a= 1, existence= False):
+        """
+        Method's Title      : coprimes
+        Formal Title        : Coprime Numbers Generator
+        Author              : Rizal Purnawan
+
+        ___Trivia
+
+            This method has several functions related to coprimitives
+        of a pair of integers. Arguments 'a' and 'b' must be
+        integers >= 1, 'a' < 'b' is a must, and by default 'a'
+        is set to be 1. If argument 'existence' is 'False' --which is
+        the default setting-- then the method will return a list of
+        integers in between 'a' and 'b' that are coprime with both
+        'a' and 'b'. If such integers do not exists, then it returns
+        an empty list. On the other hand, if 'existence' is 'True',
+        then the method will return a boolean value. It returns 'True'
+        if there is at least an integer in between 'a' and 'b' that
+        are coprime to both 'a' and 'b'. Then it returns 'False'
+        otherwise.
+        """
+        if all(isinstance(n, int) and n >= 0 for n in [a, b]):
+            gcd = math.gcd
+            if existence == False:
+                return [n for n in range(a, b)
+                            if gcd(n, a) == 1 and gcd(n, b) == 1]
+            elif existence == True:
+                return (
+                    True if any(
+                        gcd(n, a) == 1 and gcd(n, b)
+                        for n in range(a, b)
+                        )
+                    else False
+                )
         else:
             print("Invalid input!")
             raise ValueError
