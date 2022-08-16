@@ -43,13 +43,13 @@ class Forecast:
                
         ___Notice
         
-            This algorithm uses python libraries namely 'Pandas', 'Seaborn'
-        and 'Plotly'. If one uses a machine that does not
-        have these libraries installed, we suggest to install them
-        first.
+            This algorithm uses python libraries namely 'Pandas', 'Numpy',
+        'Scikit Learn', 'Statsmodels', 'Matplotlib', 'Seaborn' and
+        'Plotly'. If one uses a machine that does not have these
+        libraries installed, we suggest to install them first.
         
             If one works in a notebook, the following scripts can be
-        copied and run in a cell to install:
+        copied and run in a cell for installation:
         
             !pip install pandas
             !pip install numpy
@@ -67,7 +67,7 @@ class Forecast:
            import numpy as np
            import matplotlib.pyplot as plt
            import plotly.graph_objects as go
-           sns.set_style("dark)
+           sns.set_style("dark")
            from sklearn.linear_model import LinearRegression
            from statsmodels.tsa.deterministic import CalendarFourier, \
                                                      DeterministicProcess
