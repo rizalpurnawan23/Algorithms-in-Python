@@ -1,4 +1,5 @@
-# Algoritma
+# ALGORITMA OPTIMASI LENTUR BALOK BETON KONVENSIONAL
+
 class OptimasiLenturBalok:
     def readMe(self):
         return (
